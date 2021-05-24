@@ -28,9 +28,9 @@ class UserController extends Controller
     public function saveStaff(request $request){
         $staff = new Staff;
     
-        $staff->staff_fullname = $request->input('fullname');
-        $staff->staff_email = $request->input('email');
-        $staff->staff_password = $request->input('pwd');
+        $staff->user_fullname = $request->input('fullname');
+        $staff->user_email = $request->input('email');
+        $staff->user_password = $request->input('pwd');
         $staff->user_type = $request->input('type');
 
         $staff->save();
@@ -40,9 +40,9 @@ class UserController extends Controller
     public function saveRun(request $request){
         $runner = new Runner;
     
-        $runner->run_fullname = $request->input('fullname');
-        $runner->run_email = $request->input('email');
-        $runner->run_password = $request->input('pwd');
+        $runner->user_fullname = $request->input('fullname');
+        $runner->user_email = $request->input('email');
+        $runner->user_password = $request->input('pwd');
         $runner->run_age = $request->input('age');
 
         $runner->run_lang = $request->input('lang');
@@ -51,8 +51,9 @@ class UserController extends Controller
         $runner->run_agree = $request->input('agree');
         $runner->user_type = $request->input('type');
 
-        return view('manageAccount.account_runner');
         $runner->save();
+        return view('manageAccount.account_runner');
+       
     }
 
     

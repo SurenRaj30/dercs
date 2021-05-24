@@ -15,9 +15,9 @@ class CreateRunnersTable extends Migration
     {
         Schema::create('runners', function (Blueprint $table) {
             $table->increments ('runID');
-            $table->string ('run_fullname');
-            $table->string ('run_email');
-            $table->string ('run_password');
+            $table->string ('user_fullname');
+            $table->string ('user_email');
+            $table->string ('user_password');
 
             $table->enum ('run_age',['Yes', 'No']);
             $table->enum ('run_lang', ['English', 'Malay']);

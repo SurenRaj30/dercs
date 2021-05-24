@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,6 @@ Route::post('/saveRunner', [UserController::class, 'saveRun']);
 
 
 Route::view('/login', 'manageAuth/login');
+
+Route::view('/registerCust', 'manageRegistration/regCust');
+Route::view('/registerRun', 'manageRegistration/regRun');

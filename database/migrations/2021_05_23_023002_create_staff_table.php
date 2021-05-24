@@ -15,12 +15,13 @@ class CreateStaffTable extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->increments ('staffID');
-            $table->string ('staff_fullname');
-            $table->string ('staff_email');
-            $table->string ('staff_password');
+            $table->string ('user_fullname');
+            $table->string ('user_email');
+            $table->string ('user_password');
             $table->string ('user_type')->default('Staff');
         });
-    }
+
+    }   
 
     /**
      * Reverse the migrations.

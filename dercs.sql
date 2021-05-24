@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2021 at 02:36 PM
+-- Generation Time: May 24, 2021 at 08:44 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -43,7 +43,6 @@ CREATE TABLE `customers` (
 INSERT INTO `customers` (`custID`, `user_fullname`, `user_address`, `user_email`, `user_password`, `user_type`) VALUES
 (1, 'suren', 'no 75 jln 3/8', 'rj', '12', 'Customer'),
 (2, 'Tzuyu', 'No 75', 'rajsuren@gmail.com', '12', 'Customer'),
-(3, 'theva', 'no 75', 'rj@gmail.com', '12', 'Customer'),
 (4, 'priya raj', 'no 75 jln 3/8', 'priya@gmail.com', '12', 'Customer'),
 (5, 'priya raj', 'no 75 jln 3/8', 'priya@gmail.com', '12', 'Customer'),
 (6, 'Pavi', 'no 75 jln 3/8', 'raj@gmail.com', '12', 'Customer'),
@@ -52,7 +51,8 @@ INSERT INTO `customers` (`custID`, `user_fullname`, `user_address`, `user_email`
 (9, 'Pavi', 'no 75 jln 3/8', 'raj@gmail.com', '12', 'Customer'),
 (10, 'Pavi', 'no 75 jln 3/8', 'raj@gmail.com', '12', 'Customer'),
 (11, 'Pavi', 'no 75 jln 3/8', 'raj@gmail.com', '12', 'Customer'),
-(12, 'Pavi', 'no 75 jln 3/8', 'raj@gmail.com', '12', 'Customer');
+(12, 'Pavi', 'no 75 jln 3/8', 'raj@gmail.com', '12', 'Customer'),
+(13, 'Sana', 'no 75 jln 3/8', 'rj@gmail.com', '12', 'Customer');
 
 -- --------------------------------------------------------
 
@@ -90,8 +90,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2014_10_12_100000_create_password_resets_table', 1),
 (10, '2019_08_19_000000_create_failed_jobs_table', 1),
 (11, '2021_05_23_021301_create_customers_table', 2),
-(12, '2021_05_23_023002_create_staff_table', 3),
-(16, '2021_05_23_025919_create_runners_table', 4);
+(17, '2021_05_23_023002_create_staff_table', 3),
+(19, '2021_05_23_025919_create_runners_table', 4);
 
 -- --------------------------------------------------------
 
@@ -113,9 +113,9 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `runners` (
   `runID` int(10) UNSIGNED NOT NULL,
-  `run_fullname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `run_email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `run_password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_fullname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `run_age` enum('Yes','No') COLLATE utf8mb4_unicode_ci NOT NULL,
   `run_lang` enum('English','Malay') COLLATE utf8mb4_unicode_ci NOT NULL,
   `run_citizen` enum('Malaysian','Non-Malaysian') COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -128,9 +128,15 @@ CREATE TABLE `runners` (
 -- Dumping data for table `runners`
 --
 
-INSERT INTO `runners` (`runID`, `run_fullname`, `run_email`, `run_password`, `run_age`, `run_lang`, `run_citizen`, `run_license`, `run_agree`, `user_type`) VALUES
-(1, 'rj', 'rj@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner'),
-(2, 'sana', '0t9@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner');
+INSERT INTO `runners` (`runID`, `user_fullname`, `user_email`, `user_password`, `run_age`, `run_lang`, `run_citizen`, `run_license`, `run_agree`, `user_type`) VALUES
+(1, 'Dahyun', 'dah@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner'),
+(2, 'Dahyun', 'dah@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner'),
+(3, 'Dahyun', 'dah@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner'),
+(4, 'Dahyun', 'dah@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner'),
+(5, 'Dahyun', 'dah@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner'),
+(6, 'Dahyun', 'dah@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner'),
+(7, 'Dahyun', 'dah@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner'),
+(8, 'Dahyun', 'dah@gmail.com', '12', 'Yes', 'English', 'Malaysian', 'Yes', 'Yes', 'Runner');
 
 -- --------------------------------------------------------
 
@@ -140,9 +146,9 @@ INSERT INTO `runners` (`runID`, `run_fullname`, `run_email`, `run_password`, `ru
 
 CREATE TABLE `staff` (
   `staffID` int(10) UNSIGNED NOT NULL,
-  `staff_fullname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `staff_email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `staff_password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_fullname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Staff'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -150,9 +156,8 @@ CREATE TABLE `staff` (
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`staffID`, `staff_fullname`, `staff_email`, `staff_password`, `user_type`) VALUES
-(1, 'rja', 'rj@gmail.com', '12', 'Staff'),
-(2, 'Jihyo', 'jih@gmail.com', '12', 'Staff');
+INSERT INTO `staff` (`staffID`, `user_fullname`, `user_email`, `user_password`, `user_type`) VALUES
+(1, 'mina', 'mina@gmail.com', '12', 'Staff');
 
 --
 -- Indexes for dumped tables
@@ -203,7 +208,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `custID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `custID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -215,19 +220,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `runners`
 --
 ALTER TABLE `runners`
-  MODIFY `runID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `runID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `staffID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `staffID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
