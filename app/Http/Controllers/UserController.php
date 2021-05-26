@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Staff;
 use App\Models\Runner;
-
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -17,11 +17,11 @@ class UserController extends Controller
         $customer->user_fullname = $request->input('fullname');
         $customer->user_address = $request->input('addr');
         $customer->user_email = $request->input('email');
-        $customer->user_password = $request->input('pwd');
+        $customer->user_password = Hash::make($request->input('pwd'));
         $customer->user_type = $request->input('type');
 
         $customer->save();
-        return view('manageAccount.account_customer');
+        return view('manageAccount/account_customer');
 
     }
 
@@ -30,11 +30,11 @@ class UserController extends Controller
     
         $staff->user_fullname = $request->input('fullname');
         $staff->user_email = $request->input('email');
-        $staff->user_password = $request->input('pwd');
+        $staff->user_password = Hash::make($request->input('pwd'));
         $staff->user_type = $request->input('type');
 
         $staff->save();
-        return view('manageAccount.account_staff');
+        return view('manageAccount/account_staff');
     }
 
     public function saveRun(request $request){
@@ -42,7 +42,7 @@ class UserController extends Controller
     
         $runner->user_fullname = $request->input('fullname');
         $runner->user_email = $request->input('email');
-        $runner->user_password = $request->input('pwd');
+        $runner->user_password = Hash::make($request->input('pwd'));
         $runner->run_age = $request->input('age');
 
         $runner->run_lang = $request->input('lang');
@@ -52,7 +52,7 @@ class UserController extends Controller
         $runner->user_type = $request->input('type');
 
         $runner->save();
-        return view('manageAccount.account_runner');
+        return view('manageAccount/account_runner');
        
     }
 

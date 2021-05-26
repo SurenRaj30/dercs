@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +32,5 @@ Route::view('/login', 'manageAuth/login');
 
 Route::view('/registerCust', 'manageRegistration/regCust');
 Route::view('/registerRun', 'manageRegistration/regRun');
+
+Route::post('/loginValid', [LoginController::class, 'check']);

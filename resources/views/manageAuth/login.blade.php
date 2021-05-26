@@ -24,12 +24,20 @@
                                 
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="login-username" type="text" class="form-control" name="email" value="" placeholder="Email address">                                        
+                                    <input id="login-username" type="text" class="form-control" name="email" placeholder="Email address">
+                                    <span class="text-danger">@error('email'){{ $message }}@enderror</span>                                        
                                 </div>
                             
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                     <input id="login-password" type="password" class="form-control" name="pwd" placeholder="password">
+                                    <span class="text-danger">@error('pwd'){{ $message }}@enderror</span>
+                                </div>
+
+                                <div style="margin-bottom: 25px" class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input id="login-password" type="text" class="form-control" name="type" placeholder="User type">
+                                    <span class="text-danger">@error('type'){{ $message }}@enderror</span>
                                 </div>
                             
                     

@@ -9,6 +9,7 @@
     <div class="mb-3">
         <label for="fullname" class="form-label">Full Name</label>
         <input name='fullname' type="text" placeholder="Full Name" class="form-control">
+        <span class="text-danger">@error('Full Name'){{ $message }}@enderror</span> 
     </div>
 
     <div class="mb-3">
