@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,9 @@ Route::view('/registerCust', 'manageRegistration/regCust');
 Route::view('/registerRun', 'manageRegistration/regRun');
 
 Route::post('/loginValid', [LoginController::class, 'check']);
+
+//payment route
+
+Route::get('bizappay','App\Http\controllers\PaymentController@create')->name('bizappay');
+Route::get('bizappay-status','App\Http\controllers\PaymentController@status')->name('bizappay-status');
+Route::post('bizappay-callback','App\Http\controllers\PaymentController@callback')->name('bizappay-callback');
