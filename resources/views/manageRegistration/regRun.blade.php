@@ -1,5 +1,5 @@
 
-@extends('layouts.nav')
+@extends('layouts.navReg')
 
 
 @section('content')

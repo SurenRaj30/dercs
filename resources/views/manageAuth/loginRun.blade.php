@@ -7,20 +7,20 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <title>Login</title>
+    <title>Runner Login</title>
 </head>
 <body>
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
         <div class="panel panel-info" >
                 <div class="panel-heading">
-                    <div class="panel-title">DERCS</div>
+                    <div class="panel-title">DERCS: Runner Login</div>
                     
                 </div>     
                 <div style="padding-top:30px" class="panel-body" >
 
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                         
-                    <form id="loginform" class="form-horizontal" role="form" action="{{URL::to('/loginCust')}}" method="POST">
+                    <form id="loginform" class="form-horizontal" role="form" action="{{URL::to('/loginRunner')}}" method="POST">
                                 
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -50,9 +50,8 @@
                                     
                                         <a href="{{URL::to('/registerCust')}}">Sign Up</a>
                                         <a href="{{URL::to('/registerRun')}}">Register as Runner</a><br>
-                                        <a href="{{URL::to('/loginRun')}}">Login as Runner</a><br>
+                                        <a href="{{URL::to('/loginCust')}}">Login as Customer</a><br>
                                         <a href="{{URL::to('/loginStaff')}}">Login as Staff</a><br>
-
                                     </div>
                                 </div>
                             </div>    
@@ -66,11 +65,3 @@
 </div>
 </body>
 </html>
-
-    
-    
-
-
-
-
-   

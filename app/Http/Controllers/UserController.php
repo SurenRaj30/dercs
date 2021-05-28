@@ -6,11 +6,25 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Staff;
 use App\Models\Runner;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session; 
 
 class UserController extends Controller
 {
+    
+    public function viewCustForm(){
+        return view('manageRegistration.regCust');
+    }
+
+    public function viewStaffForm(){
+        return view('manageRegistration.regStaff');
+    }
+
+    public function viewRunnerForm(){
+        return view('manageRegistration.regRun');
+    }
+    
     public function saveCust(request $request){
         $customer = new Customer;
     
@@ -21,7 +35,7 @@ class UserController extends Controller
         $customer->user_type = $request->input('type');
 
         $customer->save();
-        return view('manageAccount/account_customer');
+        return view('manageAccount.account_customer');
 
     }
 
@@ -34,7 +48,7 @@ class UserController extends Controller
         $staff->user_type = $request->input('type');
 
         $staff->save();
-        return view('manageAccount/account_staff');
+        return view('manageAccount.account_staff');
     }
 
     public function saveRun(request $request){
@@ -52,9 +66,8 @@ class UserController extends Controller
         $runner->user_type = $request->input('type');
 
         $runner->save();
-        return view('manageAccount/account_runner');
+        return view('manageAccount.account_runner');
        
     }
-
     
 }

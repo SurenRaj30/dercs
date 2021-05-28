@@ -15,22 +15,51 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route to the main page
+Route::get('/', [LoginController::class, 'viewCustLogin']);
 
-Route::view('/regCust', 'manageRegistration/regCust');
-Route::view('/regStaff', 'manageRegistration/regStaff');
-Route::view('/regRun', 'manageRegistration/regRun');
+//Route to registration interfaces
+Route::get('/registerCust', [UserController::class, 'viewCustForm']);
+Route::get('/registerStaff', [UserController::class, 'viewStaffForm']);
+Route::get('/registerRun', [UserController::class, 'viewRunnerForm']);
 
+//Route to registration validations
 Route::post('/save', [UserController::class, 'saveCust']);
 Route::post('/saveStaff', [UserController::class, 'saveStaff']);
 Route::post('/saveRunner', [UserController::class, 'saveRun']);
 
+//Route to login interfaces
+Route::get('/loginStaff', [LoginController::class, 'viewStaffLogin']);
+Route::get('/loginRun', [LoginController::class, 'viewRunnerLogin']);
 
-Route::view('/login', 'manageAuth/login');
+//Route to login validations
+Route::post('/loginCust', [LoginController::class, 'check']);
+Route::post('/loginStaff', [LoginController::class, 'checkStaff']);
+Route::post('/loginRunner', [LoginController::class, 'checkRunner']);
 
-Route::view('/registerCust', 'manageRegistration/regCust');
-Route::view('/registerRun', 'manageRegistration/regRun');
 
-Route::post('/loginValid', [LoginController::class, 'check']);
+/*check session before login
+havent check; dont uncomment
+
+Route::get('/login', function() {
+
+    if (session()->has('logged'))
+    {
+        return view('manageAccount.account_customer');
+    }
+
+    return view('manageAuth.login');
+});*/
+
+
+//Destroy session after log out
+
+Route::get('/logOut', function() 
+{
+    if(session()->has('logged'))
+    {
+        session()->pull('logged');
+    }
+
+    return view('manageAuth.login');
+});
