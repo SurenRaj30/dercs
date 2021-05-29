@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PaymentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,12 @@ Route::post('/loginValid', [LoginController::class, 'check']);
 
 //payment route
 
-Route::get('bizappay','App\Http\controllers\PaymentController@create')->name('bizappay');
-Route::get('bizappay-status','App\Http\controllers\PaymentController@status')->name('bizappay-status');
-Route::post('bizappay-callback','App\Http\controllers\PaymentController@callback')->name('bizappay-callback');
+Route::get('bizappay','PaymentController@create')->name('bizappay');
+Route::get('bizappay-status','PaymentController@status')->name('bizappay-status');
+Route::post('bizappay-callback','PaymentController@callback')->name('bizappay-callback');
+
+Route::get('toyyibpay','ToyyibpayController@createBill')->name('toyyibpay-create');
+Route::get('toyyibpay-status','ToyyibpayController@paymentStatus')->name('toyyibpay-status');
+Route::post('toyyibpay-callback','ToyyibpayController@callback')->name('toyyibpay-callback');
+
+Route::view('/checkout', 'managePayment/checkout');

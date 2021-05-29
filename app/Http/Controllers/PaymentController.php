@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PaymentController extends Controller
 {
@@ -20,13 +21,15 @@ class PaymentController extends Controller
             'billCallbackUrl' => route('bizappay-callback'),
             'billExternalReferenceNo' => ''
         ];
+
+        $url = 'https://www.bizappay.com/staging/api/createNewBill';
+
+        $response = Http::asForm()->post($url, $data);
+    
+        return redirect($response['paymentUrl']);
     }
 
-    $url = 'https://documenter.getpostman.com/view/6258355/SzmZdLp3?version=latest/createNewBill';
-
-    $response = Http::asForm()->post($url, $data);
-
-    return redirect($response['paymentUrl']);
+   
 
     public function status()
     {
@@ -40,3 +43,7 @@ class PaymentController extends Controller
         Log::info($response);
     }
 }
+
+
+
+
