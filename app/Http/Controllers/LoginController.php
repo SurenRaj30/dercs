@@ -37,17 +37,20 @@ class LoginController extends Controller
         $userInfo = Customer::where('user_email', '=', $request->email)->first();
 
         if(!$userInfo){
-            return back()-> with("Failed");
-        }else 
-
-        {
+            $oldEmail = $request->old('email');
+            return redirect()
+            ->back()->with('not exist', 'The account do not exist. Please register before logging in')
+            ->withInput();
+        }else{
             if(Hash::check($request->pwd, $userInfo->user_password)){
                 if($userInfo->user_type == 'Customer'){
                     $request->session()->put('logged', $userInfo->custID);
                     return view ('manageAccount.account_customer');}
                 }else{
-                
-               echo "oops";
+                $oldEmail = $request->old('email');
+                return redirect()
+               ->back()->with('fail', 'You have entered the wrong password')
+               ->withInput();
             }
         }
     }
@@ -64,17 +67,21 @@ class LoginController extends Controller
         $userInfo = Staff::where('user_email', "=", $request->email)->first();
 
         if(!$userInfo){
-            return back()-> with("Failed");
-        }else 
-        {
+            $oldEmail = $request->old('email');
+            return redirect()
+            ->back()->with('not exist', 'The account do not exist. Please register before logging in')
+            ->withInput();
+        }else {
             if(Hash::check($request->pwd, $userInfo->user_password)){
                 if($userInfo->user_type == 'Staff'){
                     $request->session()->put('logged', $userInfo->staffID);
                     return view ('manageAccount.account_staff');
                 }
             }else{
-                
-               echo "oops";
+                $oldEmail = $request->old('email');
+                return redirect()
+               ->back()->with('fail', 'You have entered the wrong password')
+               ->withInput();
             }
         }
     }
@@ -91,7 +98,10 @@ class LoginController extends Controller
         $userInfo = Runner::where('user_email', "=", $request->email)->first();
 
         if(!$userInfo){
-            return back()-> with("Failed");
+            $oldEmail = $request->old('email');
+            return redirect()
+            ->back()->with('not exist', 'The account do not exist. Please register before logging in')
+            ->withInput();
         }else 
         {
             if(Hash::check($request->pwd, $userInfo->user_password)){
@@ -100,7 +110,10 @@ class LoginController extends Controller
                     return view ('manageAccount.account_runner');
                 }
             }else{
-               echo "oops";
+                $oldEmail = $request->old('email');
+                return redirect()
+                ->back()->with('fail', 'You have entered the wrong password')
+                ->withInput();
             }
         }
     }

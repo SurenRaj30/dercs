@@ -5,16 +5,22 @@
 <title>Customer Registration</title>
 <link rel="stylesheet" href="public/css/style.css">
 <form action="{{URL::to('/save')}}" method="POST">
+
+  @if(Session::get('fail'))
+  <div class="alert alert-danger">
+    {{Session::get('fail')}}
+  </div>
+  @endif
     
     <div class="mb-3">
         <label for="fullname" class="form-label">Full Name</label>
-        <input name='fullname' type="text" placeholder="Full Name" class="form-control">
+        <input name='fullname' type="text" placeholder="Full Name" class="form-control" value="{{old('fullname')}}">
         <span class="text-danger">@error('Full Name'){{ $message }}@enderror</span> 
     </div>
 
     <div class="mb-3">
         <label for="addr" class="form-label">Address</label>
-        <input name='addr' type="text" placeholder="Mailing Address" class="form-control">
+        <input name='addr' type="text" placeholder="Mailing Address" class="form-control" value="{{old('addr')}}">
     </div>
     
     <div class="mb-3">

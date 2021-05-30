@@ -8,7 +8,8 @@ use App\Models\Staff;
 use App\Models\Runner;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session; 
+use Illuminate\Support\Facades\Session;
+
 
 class UserController extends Controller
 {
@@ -34,8 +35,20 @@ class UserController extends Controller
         $customer->user_password = Hash::make($request->input('pwd'));
         $customer->user_type = $request->input('type');
 
-        $customer->save();
-        return view('manageAccount.account_customer');
+        if(Customer::where('user_email', '=', $request->email)-> first()){
+            
+            $oldName = $request->old('fullname');
+            $oldAddr = $request->old('addr');
+            
+            return redirect()
+            ->back()->with('fail', 'The email address is already in use')
+            ->withInput();
+
+        }else{
+            $customer->save();
+            return redirect()->action([LoginController::class, 'viewCustLogin'])
+            ->with('success', 'You are now registered as customer and can log in');
+        }
 
     }
 
@@ -47,8 +60,21 @@ class UserController extends Controller
         $staff->user_password = Hash::make($request->input('pwd'));
         $staff->user_type = $request->input('type');
 
-        $staff->save();
-        return view('manageAccount.account_staff');
+       if(Staff::where('user_email', '=', $request->email)-> first()){
+            
+            $oldName = $request->old('fullname');
+            $oldAddr = $request->old('addr');
+            
+            return redirect()
+            ->back()->with('fail', 'The email address is already in use')
+            ->withInput();
+
+        }else{
+            $staff->save();
+            return redirect()->action([LoginController::class, 'viewStaffLogin'])
+            ->with('success', 'You are now registered as staff and can log in');
+        }
+
     }
 
     public function saveRun(request $request){
@@ -65,9 +91,20 @@ class UserController extends Controller
         $runner->run_agree = $request->input('agree');
         $runner->user_type = $request->input('type');
 
-        $runner->save();
-        return view('manageAccount.account_runner');
-       
+        if(Runner::where('user_email', '=', $request->email)-> first()){
+            
+            $oldName = $request->old('fullname');
+            $oldAddr = $request->old('addr');
+            
+            return redirect()
+            ->back()->with('fail', 'The email address is already in use')
+            ->withInput();
+
+        }else{
+            $runner->save();
+            return redirect()->action([LoginController::class, 'viewRunnerLogin'])
+            ->with('success', 'You are now registered as runner and can log in');
+        }
+
     }
-    
 }

@@ -15,7 +15,7 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-//Route to the main page
+//Route to the main page = customer login page
 Route::get('/', [LoginController::class, 'viewCustLogin']);
 
 //Route to registration interfaces

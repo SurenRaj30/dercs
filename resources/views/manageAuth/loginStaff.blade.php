@@ -22,6 +22,24 @@
                         
                     <form id="loginform" class="form-horizontal" role="form" action="{{URL::to('/loginStaff')}}" method="POST">
                                 
+                        @if(Session::get('success'))
+                        <div class="alert alert-success">
+                          {{Session::get('success')}}
+                        </div>
+                        @endif
+
+                        @if(Session::get('fail'))
+                        <div class="alert alert-danger">
+                          {{Session::get('fail')}}
+                        </div>
+                        @endif
+
+                        @if(Session::get('not exist'))
+                        <div class="alert alert-danger">
+                          {{Session::get('not exist')}}
+                        </div>
+                        @endif
+
                         <div style="margin-bottom: 25px" class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                     <input id="login-username" type="text" class="form-control" name="email" placeholder="Email address">
@@ -50,7 +68,7 @@
                                     
                                         <a href="{{URL::to('/registerCust')}}">Sign Up</a>
                                         <a href="{{URL::to('/registerRun')}}">Register as Runner</a><br>
-                                        <a href="{{URL::to('/loginCust')}}">Login as Customer</a><br>
+                                        <a href="{{URL::to('/')}}">Login as Customer</a><br>
                                         <a href="{{URL::to('/loginRun')}}">Login as Runner</a><br>
                                     </div>
                                 </div>
